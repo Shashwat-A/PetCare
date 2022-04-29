@@ -4,7 +4,7 @@ import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Platform, StatusBar } from 'react-native-web';
-import Header from '../component/Header';
+import Header from "../navigation/Header"
 
 let font = {
     "MyFont": require('../assets/PlayfairDisplay-VariableFont_wght.ttf')

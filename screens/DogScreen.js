@@ -1,12 +1,35 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Header from '../component/Header';
+import Header from '../navigation/Header';
+import * as Font from 'expo-font';
+
+const font = {
+    'MyFont' :  require('../assets/PlayfairDisplay-VariableFont_wght.ttf')
+}
 
 export default class DogScreen extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fontloaded : false
+        }
+    }
+
+    async _loadFontAsync() {
+        await Font.loadAsync(font);
+        this.setState({fontloaded: true})
+        console.log(this.state.fontloaded + 'dog');
+    }
+
+    componentDidMount() {
+        this._loadFontAsync();
+    }
+    
     render() {
         return(
-            <View style={{flex:1, backgroundColor: '#D2A470'}}>
+            <View style={{flex:1, backgroundColor: '#fff2fe'}}>
                 <Header/>
                 <View>
                     <TouchableOpacity style={styles.btn}>
@@ -26,11 +49,9 @@ export default class DogScreen extends React.Component {
                 <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start'}}>
                     <TouchableOpacity 
                         style={styles.backBtn}
-                        onPress={()=> this.props.navigation.navigate("HomeScreen")}>
+                        onPress={()=> this.props.navigation.navigate("Home1")}>
                         <Text 
-                            style={{fontFamily: 'MyFont',
-                            fontWeight: 'bold',
-                            fontSize: 20}}>
+                            style={styles.btnText}>
                             Back</Text>
                     </TouchableOpacity>
                 </View>
@@ -64,9 +85,9 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
 
+
     btnText: {
         fontFamily: 'MyFont',
-        fontWeight: 'bold',
         fontSize: 24
     },
 
